@@ -15,3 +15,16 @@ def admin_dashboard(request):
     categories = Category.objects.all()
     return render(request, 'Admin/admin_dashboard.html', {'categories':categories, 'products':products})
 
+
+@user_passes_test
+def add_category(request):
+    if request.mehtod == 'POST':
+        form = CategoryForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('admin_dashboard')
+        
+    else:
+        form = CategoryForm()
+    return render(request, 'Admin/add_category.html', {'form':form})
+
