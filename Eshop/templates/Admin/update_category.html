@@ -6,8 +6,10 @@
     <title>Upate Category</title>
   </head>
   <body>
-    <h2>{{ categories.name }} </h2>
-    <h2>Update Category</h2>
+    <h2>{{ category.name }} </h2>
+    <h2>Update Category
+        {{ category.name }}
+    </h2>
     {% comment %} <h1>{{ form.instance.pk|yesno:'Update Category,Add Category' }}</h1> {% endcomment %}
     <form method="post">
       {% csrf_token %}
