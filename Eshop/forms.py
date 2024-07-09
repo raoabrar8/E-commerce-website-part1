@@ -13,6 +13,6 @@ class ProductForm(forms.ModelForm):
     
     
     class Meta:
-        model = Category
+        model = Product
         
-        fields = ['category','name',  'description', 'price']
+        fields = ['category', 'name',  'description', 'price']
