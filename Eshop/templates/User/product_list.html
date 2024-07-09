@@ -1,11 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prodcut List</title>
+    <title>Products in {{ category.name }}</title>
 </head>
 <body>
-    <h2>Prdocut List</h2>
+    <h1>Products in {{ category.name }}</h1>
+    <ul>
+        {% for product in products %}
+            {% comment %} <li>{{ product.name }} - {{}}-{{ product.price }}</li> {% endcomment %}
+            <div>
+                <p>
+                    Product Name: {{ product.name }} <br>
+                    Description: {{ product.description }} <br>
+                    Price: {{product.price}} <br>
+                </p>
+            </div>
+
+        {% endfor %}
+    </ul>
+    <a href="{% url 'category_list' %}">Back to Categories</a>
 </body>
 </html>

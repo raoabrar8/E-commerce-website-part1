@@ -18,7 +18,7 @@ def admin_dashboard(request):
 
 @user_passes_test(is_admin)
 def add_category(request):
-    if request.mehtod == 'POST':
+    if request.method == 'POST':
         form = CategoryForm(request.POST)
         if form.is_valid():
             form.save()
@@ -72,14 +72,14 @@ def update_product(request, pk):
         
     else:
         form = ProductForm()
-    return render(request, 'Admin/update_product.html', {'form':form})
+    return render(request, 'Admin/add_product.html', {'form':form})
 
 
 @user_passes_test(is_admin)
 def delete_product(request, pk):
     product = get_object_or_404(Product, pk=pk)
     product.delete()
-    return redirect('admin_dahsboard')
+    return redirect('admin_dashboard')
 
 
 # User Interface Views
@@ -93,3 +93,5 @@ def product_list(request, category_id):
     category = get_object_or_404(Category, id=category_id)
     products = category.products.all()
     return render(request, 'User/product_list.html', {'category':category, 'products':products})
+
+
