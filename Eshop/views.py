@@ -72,7 +72,7 @@ def update_product(request, pk):
         
     else:
         form = ProductForm()
-    return render(request, 'Admin/add_product.html', {'form':form})
+    return render(request, 'Admin/update_product.html', {'form':form})
 
 
 @user_passes_test(is_admin)

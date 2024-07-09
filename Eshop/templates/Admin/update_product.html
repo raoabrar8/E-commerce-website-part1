@@ -3,9 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Update Product</title>
+    <title>Add Product</title>
 </head>
 <body>
-    <h2>Update Product</h2>
+    <h2>Add Product</h2>
+    {% comment %} <h1>{{ form.instance.pk|yesno:"Update Product,Add Product" }}</h1> {% endcomment %}
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save</button>
+    </form>
+    <a href="{% url 'admin_dashboard' %}">Back to Dashboard</a>
 </body>
 </html>
