@@ -96,3 +96,96 @@ def product_list(request, category_id):
     return render(request, 'User/product_list.html', {'category':category, 'products':products})
 
 
+# cart views
+def cart_details(request):
+    cart =  request.session.get('cart', {})
+    cart_item = []
+    total_price = 0
+    
+    for item_id, item_data in cart.items():
+        product = get_object_or_404(Product, id=item_id)
+        quantity = item_data['quantity']
+        total_price += product.price * quantity
+        cart_item.append({
+            'product':product,
+            'quantity':quantity,
+            'total_price': product.price * quantity
+        })
+        
+    return render(request, 'User/cart_details.html', {'cart_item':cart_item, 'total_price':total_price})
+
+
+
+
+# def cart_detail(request):
+#     cart = request.session.get('cart',{})
+#     cart_item = []
+#     total_price = 0
+    
+    
+#     for item_id, item_data in cart.item():
+#         product = get_object_or_404(Product, id = item_id)
+#         quantity = item_data['quantity']
+#         total_price += quantity * product.price
+        
+#         cart_item.append({
+#             'product': product,
+#             'quantity': quantity,
+#             'total_price': quantity * product.price
+                
+#         })
+        
+#     return render(request, 'User/cart_details.html', {'cart_item':cart_item, 'total_price':total_price})
+        
+        
+
+
+
+def add_to_cart(request, product_id):
+    product = get_object_or_404(Product, id=product_id)
+    cart = request.session.get('cart', {})
+    # print(product)
+    # print(cart)
+    
+    if str(product.id) in cart:
+        cart[str(product.id)]['quantity'] += 1
+    else:
+        cart[str(product.id)] = {'quantity' : 1}
+        
+    request.session['cart'] = cart
+    return redirect('cart_details')
+
+# def add_cart(request, product_id):
+#     product = get_object_or_404(Product, id=product_id)
+#     cart = request.session.get('cart', {})
+#     if str(product.id) in cart:
+#         cart[str(product.id)]['quantity'] +=1
+#     else:
+#         cart[str(product.id)]+= {'quantity' : 1}
+        
+        
+#     request.sesssion.get['cart'] = cart
+    
+
+
+    
+
+
+def remove_from_cart(request, product_id):
+    cart = request.session.get('cart', {})
+    
+    if str(product_id) in cart:
+        del cart[str(product_id)]
+        request.session['cart'] = cart
+        
+    return redirect('cart_details')
+          
+          
+# def remove_from_cart(request, product_id):
+#     product = get_object_or_404(Product, id=product_id)
+#     cart = request.session.get('cart', {})
+    
+#     if str(product_id) in cart:
+#         del cart[str(product_id)]
+#         request.session['cart'] = cart
+

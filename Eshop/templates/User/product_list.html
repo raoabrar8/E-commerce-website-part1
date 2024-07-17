@@ -14,10 +14,12 @@
                     Description: {{ product.description }} <br>
                     Price: {{product.price}} <br>
                 </p>
+                <a href="{% url 'add_to_cart' product.id %}">Add to cart</a>
             </div>
 
         {% endfor %}
     </ul>
     <a href="{% url 'category_list' %}">Back to Categories</a>
+    <a href="{% url 'cart_details' %}">View Cart</a>
 </body>
 </html>

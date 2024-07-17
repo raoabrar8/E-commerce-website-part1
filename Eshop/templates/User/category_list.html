@@ -12,12 +12,16 @@
       <h1>Categories</h1>
       <ul>
         {% for category in categories %}
-          <li>
+        <ol class="list-group list-group-numbered col-lg-6">
+          <li class="list-group-item">
             <a href="{% url 'product_list' category.id %}">{{ category.name }}</a>
           </li>
+        </ol>
         {% endfor %}
       </ul>
       <div class="container">
+        <a href="{% url 'cart_details' %}"><button type="button" class="btn btn-outline-info">View Cart</button></a>
+
         <a href="{% url 'login' %}" type="button" class="btn btn-dark">Admin Panel</a>
       </div>
     </body>
