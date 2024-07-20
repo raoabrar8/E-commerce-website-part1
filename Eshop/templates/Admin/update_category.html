@@ -8,12 +8,12 @@
   <body>
     <h2>{{ category.name }} </h2>
     <h2>Update Category
-        {{ category.name }}
     </h2>
     {% comment %} <h1>{{ form.instance.pk|yesno:'Update Category,Add Category' }}</h1> {% endcomment %}
     <form method="post">
       {% csrf_token %}
       {{ form.as_p }}
+      {{category.name}}
       <button type="submit">Save Changes</button>
     </form>
     <a href="{% url 'admin_dashboard' %}">Back to Dashboard</a>

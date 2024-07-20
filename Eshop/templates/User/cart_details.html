@@ -16,7 +16,7 @@
                     <a href="{% url 'remove_from_cart' item.product.id %}">Remove</a>
                 </li> {% endcomment %}
                 <ol class="list-group list-group-numbered col-lg-6">
-                    <li class="list-group-item">
+                    <li class="list-group-item" {{forloop.counter}}>
                         Product:  {{ item.product.name }} - Quantity: {{ item.quantity }} - 
                     Total Price: ${{ item.total_price }} 
                     <p><a href="{% url 'remove_from_cart' item.product.id %}" class="link-danger link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Remove</a></p>

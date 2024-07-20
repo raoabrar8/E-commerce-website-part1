@@ -7,7 +7,7 @@
 </head>
 <body>
     <h2>Add Product</h2>
-    <h1>{{ form.instance.pk|yesno:"Update Product,Add Product" }}</h1>
+    {% comment %} <h1>{{ form.instance.pk|yesno:"Update Product,Add Product" }}</h1> {% endcomment %}
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}

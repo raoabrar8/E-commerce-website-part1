@@ -39,7 +39,7 @@ def update_category(request, pk):
             return redirect('admin_dashboard')
         
     else:
-        form = CategoryForm()
+        form = CategoryForm(instance=category)
     return render(request, 'Admin/update_category.html', {'form':form})
 
 
@@ -72,7 +72,7 @@ def update_product(request, pk):
             return redirect('admin_dashboard')
         
     else:
-        form = ProductForm()
+        form = ProductForm(instance = product)
     return render(request, 'Admin/update_product.html', {'form':form})
 
 
